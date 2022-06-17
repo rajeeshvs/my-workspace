@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.jms.annotation.JmsListener;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -27,7 +28,7 @@ EmailApi emailclient;
 	public void saveOrder(OrderVO order) {		
 		
 		//ResponseEntity<String> response = template.getForEntity("http://localhost:8081/email", String.class);
-		ResponseEntity<String> response = template.getForEntity("http://EMAIL-SERVICE/email", String.class);
+		ResponseEntity<String> response = template.postForEntity("http://EMAIL-SERVICE/email",null, String.class, null, null);
 		System.out.println(response.getBody());
 		// String email = emailclient.sendMail();
 		 //System.out.println(email);
